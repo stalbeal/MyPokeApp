@@ -5,8 +5,8 @@ data class Pokemon(
     val name: String,
     val image: String,
     val order: Int,
-    val types: List<PokemonTypes>,
-    val nextCall: String? = null
+    val firstType: String,
+    val secondType: String? = null
 )
 
 data class PokemonDetail(

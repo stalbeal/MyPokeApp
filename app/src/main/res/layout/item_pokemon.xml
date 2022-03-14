@@ -21,6 +21,40 @@
             android:layout_height="match_parent"
             android:layout_margin="@dimen/spacing_medium">
 
+            <LinearLayout
+                android:id="@+id/vFirstType"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/bg_pokemon_type_circle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivFirstType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_bug" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/vSecondType"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="@dimen/spacing_small"
+                android:background="@drawable/bg_pokemon_type_circle"
+                android:visibility="gone"
+                app:layout_constraintStart_toEndOf="@id/vFirstType"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivSecondType"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="3dp"
+                    android:src="@drawable/ic_bug" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/tvNumber"
                 android:layout_width="wrap_content"
