@@ -30,8 +30,6 @@ class HomeViewModel @Inject constructor(
         getList()
     }
 
-
-
     fun getList() {
         viewModelScope.launch {
             val cs = _state.value ?: return@launch
