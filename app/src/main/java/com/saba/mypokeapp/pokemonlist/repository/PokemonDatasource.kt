@@ -28,9 +28,9 @@ class PokemonDatasource @Inject constructor(
         Log.i("***Limit", limit.toString())
         Log.i("***dbSize", pokemonEntities.size.toString())
         Log.i("***offset", offset.toString())
-       // if (pokemonEntities.size == offset) {
+        // if (pokemonEntities.size == offset) {
 
-            return getListFromService(limit, offset)
+        return getListFromService(limit, offset)
         //}
 
         val stats = appDatabase.pokemonDao().getPokemonStats()
@@ -53,19 +53,20 @@ class PokemonDatasource @Inject constructor(
         offset: Int
     ) = pokemonEntities.isEmpty() || pokemonEntities.size < offset
 
-    private suspend fun getListFromService(limit: Int, offset: Int): List<Pokemon> = coroutineScope {
-        val response = apiService.getPokemonList(limit, offset)
+    private suspend fun getListFromService(limit: Int, offset: Int): List<Pokemon> =
+        coroutineScope {
+            val response = apiService.getPokemonList(limit, offset)
 
-         response.results.map {
-            async {
-                getDetail(it)
-            }
-        }.awaitAll()
-    }
+            response.results.map {
+                async {
+                    getDetail(it)
+                }
+            }.awaitAll()
+        }
 
     private suspend fun getDetail(itemResult: ApiPokemonItemResponse): Pokemon {
         val detail = apiPokemonService.getPokemonDetail(itemResult.url)
-        Log.i("***pokemon", detail.id.toString() + " " +detail.name)
+        Log.i("***pokemon", detail.id.toString() + " " + detail.name)
         val id = appDatabase.pokemonDao().insert(
             com.saba.mypokeapp.db.entity.Pokemon(
                 detail.id,
@@ -111,8 +112,8 @@ class PokemonDatasource @Inject constructor(
 
         return Pokemon(
             detail.id, detail.name, detail.sprites.other.officialArtwork.frontDefault, detail.order,
-            getTypeList(detail)[0].type.name, if (getTypeList(detail).size > 1)
-                getTypeList(detail)[0].type.name else null
+            detail.types[0].type.name,
+            if (detail.types.size > 1) detail.types[1].type.name else null
         )
     }
 
@@ -121,3 +122,5 @@ class PokemonDatasource @Inject constructor(
             PokemonTypes(it.slot, PokemonItem(it.type.name, it.type.url))
         }
 }
+
+class 

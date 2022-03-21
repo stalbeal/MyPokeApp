@@ -21,12 +21,6 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var isLoading = false
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +38,11 @@ class HomeFragment : Fragment() {
 
     private fun observeState() {
         viewModel.state.observe(requireActivity()) {
+            binding.lavLoadingMore.visibility = if (it.loading) {
+                View.VISIBLE
+            } else {
+                View.GONE
+            }
             when {
                 it.loading && it.pokemonList.isEmpty() -> showLoading()
                 it.pokemonList.isNotEmpty() -> {
@@ -62,42 +61,27 @@ class HomeFragment : Fragment() {
 
     private fun hideLoading() {
         binding.lavLoading.visibility = View.GONE
-        binding.lavLoadingMore.visibility = View.GONE
     }
 
     private fun initList() {
         val layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvList.layoutManager = layoutManager
         binding.rvList.adapter = HomeListAdapter()
+        binding.rvList.setHasFixedSize(false)
 
         var pastVisibleItems: Int
         var visibleItemCount: Int
         var totalItemCount: Int
 
-        /*binding.nsContainer.setOnScrollChangeListener(
-            NestedScrollView.OnScrollChangeListener { v, _, scrollY, _, _ ->
-                if (scrollY == v.getChildAt(0).measuredHeight - v.measuredHeight) {
-                    // in this method we are incrementing page number,
-                    // making progress bar visible and calling get data method.
-                    // on below line we are making our progress bar visible.
-                    if (this.isLoading) {
-                        viewModel.getMoreItems()
-                        binding.lavLoadingMore.visibility = View.VISIBLE;
-                    }
-
-                }
-            })*/
-
         binding.rvList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0) { //check for scroll down
+                if (dy > 0) {
                     visibleItemCount = layoutManager.childCount
                     totalItemCount = layoutManager.itemCount
                     pastVisibleItems = layoutManager.findFirstVisibleItemPosition()
                     if (viewModel.state.value?.loading == false && (visibleItemCount + pastVisibleItems >= totalItemCount)) {
                         binding.lavLoadingMore.visibility = View.VISIBLE
                         viewModel.getList()
-
                     }
                 }
             }

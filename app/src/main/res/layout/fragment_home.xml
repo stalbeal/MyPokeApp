@@ -4,44 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:nestedScrollingEnabled="false"
+    android:orientation="vertical"
     tools:context=".pokemonlist.ui.HomeFragment">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lavLoading"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="loading.json"
-            app:lottie_loop="true"
-            app:lottie_speed="1.25" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lavLoading"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:elevation="100dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_fileName="loading.json"
+        app:lottie_loop="true"
+        app:lottie_speed="1.25" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/lavLoadingMore"
-            tools:listitem="@layout/item_pokemon" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:nestedScrollingEnabled="false"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/lavLoadingMore"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_pokemon" />
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/lavLoadingMore"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:lottie_autoPlay="true"
-            app:lottie_fileName="loading.json"
-            app:lottie_loop="true"
-            app:lottie_speed="1.25" />
-
+    <ProgressBar
+        android:id="@+id/lavLoadingMore"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
