@@ -4,7 +4,7 @@ import com.saba.mypokeapp.pokemonlist.model.Pokemon
 import com.saba.mypokeapp.pokemonlist.network.ApiPokemonListService
 import com.saba.mypokeapp.pokemonlist.network.ApiPokemonService
 import com.saba.mypokeapp.pokemonlist.network.model.*
-import com.saba.mypokeapp.pokemonlist.repository.PokemonListRepositoryImpl
+import com.saba.mypokeapp.pokemonlist.repository.list.PokemonListRepositoryImpl
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk

@@ -2,14 +2,14 @@ package com.saba.mypokeapp.pokemonlist.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.saba.mypokeapp.databinding.ItemPokemonBinding
-import com.saba.mypokeapp.pokemonlist.model.Pokemon
+import com.saba.mypokeapp.pokemonlist.ui.model.PokemonDiffUtilCallback
+import com.saba.mypokeapp.pokemonlist.ui.model.PokemonView
 
-class HomeListAdapter() :
-    RecyclerView.Adapter<HomeItemViewHolder>() {
+class HomeListAdapter :
+    ListAdapter<PokemonView, HomeItemViewHolder>(PokemonDiffUtilCallback()) {
 
-    private val pokemonList: MutableList<Pokemon> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeItemViewHolder {
         val binding = ItemPokemonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,13 +17,6 @@ class HomeListAdapter() :
     }
 
     override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
-        holder.bind(pokemonList[position])
-    }
-
-    override fun getItemCount(): Int = pokemonList.size
-
-    fun addItems(items: List<Pokemon>) {
-        pokemonList.clear()
-        pokemonList.addAll(items)
+        holder.bind(getItem(position))
     }
 }

@@ -1,10 +1,7 @@
-package com.saba.mypokeapp.pokemonlist.repository
+package com.saba.mypokeapp.pokemonlist.repository.list
 
 import com.saba.mypokeapp.pokemonlist.model.Pokemon
-import com.saba.mypokeapp.pokemonlist.model.PokemonItem
-import com.saba.mypokeapp.pokemonlist.model.PokemonTypes
-import com.saba.mypokeapp.pokemonlist.network.model.ApiPokemonDetailResponse
-import com.saba.mypokeapp.pokemonlist.network.model.ApiPokemonItemResponse
+import com.saba.mypokeapp.pokemonlist.repository.PokemonDatasource
 import javax.inject.Inject
 
 class PokemonListRepositoryImpl @Inject constructor(
@@ -15,3 +12,4 @@ class PokemonListRepositoryImpl @Inject constructor(
         return dataSource.getList(limit, offset)
     }
 }
+

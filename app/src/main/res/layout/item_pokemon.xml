@@ -22,7 +22,7 @@
             android:layout_margin="@dimen/spacing_medium">
 
             <LinearLayout
-                android:id="@+id/vFirstType"
+                android:id="@+id/llFirstType"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:background="@drawable/bg_pokemon_type_circle"
@@ -38,13 +38,13 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/vSecondType"
+                android:id="@+id/llSecondType"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginStart="@dimen/spacing_small"
                 android:background="@drawable/bg_pokemon_type_circle"
                 android:visibility="gone"
-                app:layout_constraintStart_toEndOf="@id/vFirstType"
+                app:layout_constraintStart_toEndOf="@id/llFirstType"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView

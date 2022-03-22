@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.saba.mypokeapp.model.CoroutineDispatchers
 import com.saba.mypokeapp.pokemonlist.model.Pokemon
+import com.saba.mypokeapp.pokemonlist.ui.model.PokemonView
 import com.saba.mypokeapp.pokemonlist.usecase.GetPokemonListUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -49,6 +50,6 @@ class HomeViewModel @Inject constructor(
 
     data class State(
         val loading: Boolean = true,
-        val pokemonList: List<Pokemon> = mutableListOf()
+        val pokemonList: List<PokemonView> = mutableListOf()
     )
 }

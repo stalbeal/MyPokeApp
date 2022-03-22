@@ -28,7 +28,7 @@ class AppModule {
     fun provideDataBase(@ApplicationContext applicationContext: Context): AppDatabase {
         return Room.databaseBuilder(
             applicationContext, AppDatabase::class.java, "pokemons_db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     @Singleton

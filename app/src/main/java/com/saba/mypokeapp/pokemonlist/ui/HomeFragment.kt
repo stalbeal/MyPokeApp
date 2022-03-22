@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.saba.mypokeapp.databinding.FragmentHomeBinding
 import com.saba.mypokeapp.pokemonlist.model.Pokemon
 import com.saba.mypokeapp.pokemonlist.ui.adapter.HomeListAdapter
+import com.saba.mypokeapp.pokemonlist.ui.model.PokemonView
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -88,13 +89,10 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun setUpList(pokemonList: List<Pokemon>) {
+    private fun setUpList(pokemonList: List<PokemonView>) {
         hideLoading()
 
-        (binding.rvList.adapter as HomeListAdapter).addItems(pokemonList)
-        binding.rvList.post {
-            binding.rvList.adapter?.notifyDataSetChanged()
-        }
+        (binding.rvList.adapter as HomeListAdapter).submitList(pokemonList)
     }
 }
 

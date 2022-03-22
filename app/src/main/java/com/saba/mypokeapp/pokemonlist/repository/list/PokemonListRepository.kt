@@ -1,4 +1,4 @@
-package com.saba.mypokeapp.pokemonlist.repository
+package com.saba.mypokeapp.pokemonlist.repository.list
 
 import com.saba.mypokeapp.pokemonlist.model.Pokemon
 

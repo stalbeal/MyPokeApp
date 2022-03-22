@@ -28,13 +28,13 @@ class PokemonDatasource @Inject constructor(
         Log.i("***Limit", limit.toString())
         Log.i("***dbSize", pokemonEntities.size.toString())
         Log.i("***offset", offset.toString())
-        // if (pokemonEntities.size == offset) {
+        if (pokemonEntities.size == offset) {
 
-        return getListFromService(limit, offset)
-        //}
+            return getListFromService(limit, offset)
+        }
 
-        val stats = appDatabase.pokemonDao().getPokemonStats()
-        val ability = appDatabase.pokemonDao().getPokemonAbilities()
+       // val stats = appDatabase.pokemonDao().getPokemonStats()
+        //val ability = appDatabase.pokemonDao().getPokemonAbilities()
 
         return pokemonEntities.map { pokemon ->
             Pokemon(
@@ -123,4 +123,3 @@ class PokemonDatasource @Inject constructor(
         }
 }
 
-class 
