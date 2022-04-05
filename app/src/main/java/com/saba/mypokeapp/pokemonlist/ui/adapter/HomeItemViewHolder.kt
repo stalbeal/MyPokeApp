@@ -28,33 +28,9 @@ class HomeItemViewHolder(private val binding: ItemPokemonBinding) :
                 it.toString()
         }
 
-
         setUpIcon(binding.ivFirstType, binding.llFirstType, pokemon.firstType)
         setUpIcon(binding.ivSecondType, binding.llSecondType, pokemon.secondType)
 
-       /* binding.vSecondType.visibility = View.GONE
-
-        pokemon.secondType?.let {
-            binding.vSecondType.visibility = View.VISIBLE
-
-            binding.ivSecondType.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    itemView.context,
-                    pokemon.secondType.icon
-                )
-            )
-
-            val dra2: StateListDrawable =
-                binding.vSecondType.background.mutate() as StateListDrawable
-
-            val dcs2 = dra2.constantState as DrawableContainerState
-            val drawableItems2 = dcs2.children
-            val gradientDrawableChecked2 = drawableItems2[0] as GradientDrawable // item 1
-            gradientDrawableChecked2.setStroke(
-                2,
-                itemView.context.resources.getColor(pokemon.secondType.color)
-            )
-        }*/
     }
 
     private fun setUpIcon(ivIcon: View, llContainer: View, type: PokemonTypeView?) {
