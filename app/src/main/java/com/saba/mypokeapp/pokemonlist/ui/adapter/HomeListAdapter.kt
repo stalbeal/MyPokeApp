@@ -7,7 +7,7 @@ import com.saba.mypokeapp.databinding.ItemPokemonBinding
 import com.saba.mypokeapp.pokemonlist.ui.model.PokemonDiffUtilCallback
 import com.saba.mypokeapp.pokemonlist.ui.model.PokemonView
 
-class HomeListAdapter :
+class HomeListAdapter(private val onClickListener: PokemonItemActionListener) :
     ListAdapter<PokemonView, HomeItemViewHolder>(PokemonDiffUtilCallback()) {
 
 
@@ -17,6 +17,6 @@ class HomeListAdapter :
     }
 
     override fun onBindViewHolder(holder: HomeItemViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onClickListener)
     }
 }

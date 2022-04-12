@@ -1,22 +1,28 @@
 package com.saba.mypokeapp.pokemonlist.ui
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.saba.mypokeapp.R
 import com.saba.mypokeapp.databinding.FragmentHomeBinding
-import com.saba.mypokeapp.pokemonlist.model.Pokemon
 import com.saba.mypokeapp.pokemonlist.ui.adapter.HomeListAdapter
+import com.saba.mypokeapp.pokemonlist.ui.adapter.PokemonItemActionListener
 import com.saba.mypokeapp.pokemonlist.ui.model.PokemonView
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), PokemonItemActionListener {
 
     private val viewModel: HomeViewModel by viewModels()
     private lateinit var binding: FragmentHomeBinding
@@ -67,7 +73,7 @@ class HomeFragment : Fragment() {
     private fun initList() {
         val layoutManager = GridLayoutManager(requireContext(), 3)
         binding.rvList.layoutManager = layoutManager
-        binding.rvList.adapter = HomeListAdapter()
+        binding.rvList.adapter = HomeListAdapter(this)
         binding.rvList.setHasFixedSize(false)
 
         var pastVisibleItems: Int
@@ -93,6 +99,10 @@ class HomeFragment : Fragment() {
         hideLoading()
 
         (binding.rvList.adapter as HomeListAdapter).submitList(pokemonList)
+    }
+
+    override fun onClickListener(pokemonId: Int) {
+        findNavController().navigate(R.id.action_homeFragment_to_pokemonDetailFragment)
     }
 }
 

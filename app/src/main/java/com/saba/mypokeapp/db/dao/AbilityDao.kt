@@ -1,24 +1,24 @@
 package com.saba.mypokeapp.db.dao
 
 import androidx.room.*
-import com.saba.mypokeapp.db.entity.Ability
+import com.saba.mypokeapp.db.entity.AbilityEntity
 
 @Dao
 interface  AbilityDao {
 
     @Query("SELECT * FROM ability")
-    fun getAll(): List<Ability>
+    fun getAll(): List<AbilityEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(vararg ability: Ability)
+    fun insertAll(vararg abilityEntity: AbilityEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(ability: Ability): Long
+    fun insert(abilityEntity: AbilityEntity): Long
 
     @Query("SELECT * FROM ability WHERE ability_id = :id LIMIT 1")
-    fun findById(id: Int): Ability
+    fun findById(id: Int): AbilityEntity
 
     @Delete
-    fun delete(ability: Ability)
+    fun delete(abilityEntity: AbilityEntity)
 }
 

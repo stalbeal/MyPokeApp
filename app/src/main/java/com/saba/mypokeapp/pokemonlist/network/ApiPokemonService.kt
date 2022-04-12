@@ -2,12 +2,16 @@ package com.saba.mypokeapp.pokemonlist.network
 
 import com.saba.mypokeapp.pokemonlist.network.model.ApiPokemonDetailResponse
 import retrofit2.http.GET
-import retrofit2.http.Url
 
 interface ApiPokemonService {
 
-    @GET
+    @GET("pokemon/{name}")
     suspend fun getPokemonDetail(
-        @Url url : String
+        name: String
+    ): ApiPokemonDetailResponse
+
+    @GET("pokemon/{id}")
+    suspend fun getPokemonDetailById(
+        id: Int
     ): ApiPokemonDetailResponse
 }

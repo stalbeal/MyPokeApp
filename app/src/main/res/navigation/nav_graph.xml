@@ -9,5 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.saba.mypokeapp.pokemonlist.ui.HomeFragment"
         android:label="item_pokemon"
-        tools:layout="@layout/item_pokemon" />
+        tools:layout="@layout/item_pokemon" >
+        <action
+            android:id="@+id/action_homeFragment_to_pokemonDetailFragment"
+            app:destination="@id/pokemonDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pokemonDetailFragment"
+        android:name="com.saba.mypokeapp.detail.ui.PokemonDetailFragment"
+        android:label="fragment_pokemon_detail"
+        tools:layout="@layout/fragment_pokemon_detail" />
 </navigation>

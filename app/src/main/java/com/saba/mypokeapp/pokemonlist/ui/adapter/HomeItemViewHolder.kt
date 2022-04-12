@@ -18,7 +18,7 @@ import java.util.*
 class HomeItemViewHolder(private val binding: ItemPokemonBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(pokemon: PokemonView) {
+    fun bind(pokemon: PokemonView, onClickListener: PokemonItemActionListener) {
 
         binding.tvNumber.text =
             itemView.context.getString(R.string.pokemon_number, pokemon.id.toString())
@@ -31,6 +31,7 @@ class HomeItemViewHolder(private val binding: ItemPokemonBinding) :
         setUpIcon(binding.ivFirstType, binding.llFirstType, pokemon.firstType)
         setUpIcon(binding.ivSecondType, binding.llSecondType, pokemon.secondType)
 
+        itemView.setOnClickListener { onClickListener.onClickListener(pokemon.id) }
     }
 
     private fun setUpIcon(ivIcon: View, llContainer: View, type: PokemonTypeView?) {
@@ -57,5 +58,5 @@ class HomeItemViewHolder(private val binding: ItemPokemonBinding) :
             )
         }
     }
-
 }
+

@@ -2,7 +2,7 @@ package com.saba.mypokeapp.db.dao
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.saba.mypokeapp.db.entity.Pokemon
+import com.saba.mypokeapp.db.entity.PokemonEntity
 import com.saba.mypokeapp.db.entity.PokemonAbilities
 import com.saba.mypokeapp.db.entity.PokemonStats
 
@@ -10,7 +10,7 @@ import com.saba.mypokeapp.db.entity.PokemonStats
 interface PokemonDao {
 
     @Query("SELECT * FROM pokemon")
-    fun getAll(): List<Pokemon>
+    fun getAll(): List<PokemonEntity>
 
     @Transaction
     @Query("SELECT * FROM pokemon")
@@ -21,15 +21,15 @@ interface PokemonDao {
     fun getPokemonStats(): List<PokemonStats>
 
     @Insert(onConflict = REPLACE)
-    fun insertAll(vararg pokemon: Pokemon)
+    fun insertAll(vararg pokemonEntity: PokemonEntity)
 
     @Insert(onConflict = REPLACE)
-    fun insert(pokemon: Pokemon): Long
+    fun insert(pokemonEntity: PokemonEntity): Long
 
     @Query("SELECT * FROM pokemon WHERE id = :id LIMIT 1")
-    fun findById(id: Int): Pokemon
+    fun findById(id: Int): PokemonEntity?
 
     @Delete
-    fun delete(pokemon: Pokemon)
+    fun delete(pokemonEntity: PokemonEntity)
 }
 

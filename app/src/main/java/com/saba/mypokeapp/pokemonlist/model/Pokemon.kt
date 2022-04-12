@@ -9,7 +9,7 @@ data class Pokemon(
     val secondType: String? = null
 )
 
-data class PokemonDetail(
+data class PokemonBasicInfo(
     val id: Int,
     val name: String,
     val forms: List<PokemonItem>,
@@ -18,19 +18,14 @@ data class PokemonDetail(
     val abilities: List<Ability>,
     val baseExperience: Int,
     val locationAreaEncounters: String,
-    val moves: List<Move>,
+    //val moves: List<Move>,
     val order: Int,
     val species: List<PokemonItem>,
     val stats: List<PokemonStats>,
     val sprites: List<Sprites>,
-    val types: List<PokemonTypes>,
-    val weight: Int,
-    val nextCall: String?
-)
-
-data class PokemonItem(
-    val name: String,
-    val url: String
+    val firstType: String?,
+    val secondType: String? = null,
+    val weight: Int
 )
 
 data class PokemonTypes(

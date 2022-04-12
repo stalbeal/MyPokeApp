@@ -5,18 +5,15 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 @Entity(tableName = "pokemon")
-data class Pokemon(
+data class PokemonEntity(
     @PrimaryKey(autoGenerate = false) val id: Int,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "height") val height: Int,
     @ColumnInfo(name = "weight") val weight: Int,
-    //@ColumnInfo(name = "abilities") val abilities: List<Ability>,
     @ColumnInfo(name = "base_experience") val baseExperience: Int,
     @ColumnInfo(name = "is_default") val isDefault: Boolean,
     @ColumnInfo(name = "location_area_encounters") val locationAreaEncounters: String,
-//    @ColumnInfo(name = "moves") val moves: List<String>,
     @ColumnInfo(name = "order") val order: Int,
-    //@ColumnInfo(name = "stats") val stats: List<PokemonStats>,
     @ColumnInfo(name = "home_image") val homeImage: String,
     @ColumnInfo(name = "art_image") val image: String,
     @ColumnInfo(name = "first_type") val firstType: String?,
@@ -24,7 +21,7 @@ data class Pokemon(
 )
 
 @Entity(tableName = "ability", primaryKeys = ["ability_id", "pokemon_id"])
-data class Ability(
+data class AbilityEntity(
     @ColumnInfo(name = "ability_id") val abilityId: String,
     @ColumnInfo(name = "pokemon_id") val pokemonId: Int,
     @ColumnInfo(name = "name") val name: String,
@@ -34,20 +31,20 @@ data class Ability(
 
 data class PokemonAbilities(
 
-    @Embedded val pokemon: Pokemon,
+    @Embedded val pokemonEntity: PokemonEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "pokemon_id"
-    ) val abilities: List<Ability>
+    ) val abilityEntities: List<AbilityEntity>
 )
 
 data class PokemonStats(
 
-    @Embedded val pokemon: Pokemon,
+    @Embedded val pokemonEntity: PokemonEntity,
     @Relation(
         parentColumn = "id",
         entityColumn = "pokemon_id"
-    ) val stats: List<Stats>
+    ) val stats: List<StatsEntity>
 )
 
 /*@Entity(tableName = "type")
@@ -60,7 +57,7 @@ data class Type(
 )*/
 
 @Entity(tableName = "stats", primaryKeys = ["stat_id", "pokemon_id"])
-data class Stats(
+data class StatsEntity(
     @ColumnInfo(name = "stat_id") val statId: String,
     @ColumnInfo(name = "pokemon_id") val pokemonId: Int,
     @ColumnInfo(name = "base_stat") val baseStat: Int,

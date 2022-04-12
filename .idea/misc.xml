@@ -3,19 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.2140625" />
-        <entry key="app/src/main/res/drawable/bg_item_info.xml" value="0.1195" />
+        <entry key="app/src/main/res/drawable/bg_item_info.xml" value="0.21" />
         <entry key="app/src/main/res/drawable/bg_pokemon_type_circle.xml" value="0.4125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.41354166666666664" />
         <entry key="app/src/main/res/layout/bg_type_circle.xml" value="0.39947916666666666" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.35650224215246634" />
-        <entry key="app/src/main/res/layout/fragment_pokemon_detail.xml" value="0.18614130434782608" />
-        <entry key="app/src/main/res/layout/item_basic_info.xml" value="0.4362138159481096" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.41354166666666664" />
+        <entry key="app/src/main/res/layout/fragment_pokemon_detail.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_basic_info.xml" value="0.33408071748878926" />
         <entry key="app/src/main/res/layout/item_pokemon.xml" value="0.75" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

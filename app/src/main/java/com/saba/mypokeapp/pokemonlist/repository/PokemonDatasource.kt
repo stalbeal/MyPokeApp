@@ -2,8 +2,8 @@ package com.saba.mypokeapp.pokemonlist.repository
 
 import android.util.Log
 import com.saba.mypokeapp.db.AppDatabase
-import com.saba.mypokeapp.db.entity.Ability
-import com.saba.mypokeapp.db.entity.Stats
+import com.saba.mypokeapp.db.entity.AbilityEntity
+import com.saba.mypokeapp.db.entity.StatsEntity
 import com.saba.mypokeapp.pokemonlist.model.Pokemon
 import com.saba.mypokeapp.pokemonlist.model.PokemonItem
 import com.saba.mypokeapp.pokemonlist.model.PokemonTypes
@@ -49,9 +49,9 @@ class PokemonDatasource @Inject constructor(
     }
 
     private fun mustCallService(
-        pokemonEntities: List<com.saba.mypokeapp.db.entity.Pokemon>,
+        pokemonEntityEntities: List<com.saba.mypokeapp.db.entity.PokemonEntity>,
         offset: Int
-    ) = pokemonEntities.isEmpty() || pokemonEntities.size < offset
+    ) = pokemonEntityEntities.isEmpty() || pokemonEntityEntities.size < offset
 
     private suspend fun getListFromService(limit: Int, offset: Int): List<Pokemon> =
         coroutineScope {
@@ -65,10 +65,10 @@ class PokemonDatasource @Inject constructor(
         }
 
     private suspend fun getDetail(itemResult: ApiPokemonItemResponse): Pokemon {
-        val detail = apiPokemonService.getPokemonDetail(itemResult.url)
+        val detail = apiPokemonService.getPokemonDetail(itemResult.name)
         Log.i("***pokemon", detail.id.toString() + " " + detail.name)
         val id = appDatabase.pokemonDao().insert(
-            com.saba.mypokeapp.db.entity.Pokemon(
+            com.saba.mypokeapp.db.entity.PokemonEntity(
                 detail.id,
                 detail.name,
                 detail.height,
@@ -86,7 +86,7 @@ class PokemonDatasource @Inject constructor(
 
         detail.abilities.forEach {
             appDatabase.abilitiesDao().insert(
-                Ability(
+                AbilityEntity(
                     abilityId = it.details.name,
                     pokemonId = id.toInt(),
                     name = it.details.name,
@@ -98,7 +98,7 @@ class PokemonDatasource @Inject constructor(
 
         detail.stats.forEach {
             appDatabase.statsDao().insert(
-                Stats(
+                StatsEntity(
                     statId = it.type.name,
                     pokemonId = id.toInt(),
                     name = it.type.name,
